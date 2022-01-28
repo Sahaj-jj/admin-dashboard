@@ -3,9 +3,9 @@
 :root {
     --sidebar: rgb(37, 168, 255);
     --sidebar-font: white;
-    --background: grey;
+    --background: rgba(0, 0, 100, 0.1);
     --project: white;
-    --accent: yellow;
+    --accent: rgb(255, 145, 0);
     --heading: black;
     --text: grey;
     --hover: rgba(0, 0, 0, 0.1);
@@ -18,6 +18,7 @@
 
 body {
     font-family: 'Lato', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--background);
 }
 
 li {
@@ -43,29 +44,31 @@ li {
 
 .nav {
     grid-area: 1 / 2 / 2 / -1;
-    border: 1px solid blue;
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     grid-template-rows: 45% 1fr;
+    background-color: var(--project);
+    box-shadow: 0 2px 5px 0 rgba(128, 128, 128, 0.253);
 }
 
 .project-container {
     grid-area: 2 / 2 / -1 / 3;
-    border: 1px solid blue;
     display: grid;
-    padding: 20px 100px;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-template-rows: 50px;
+    padding: 30px 20px 0;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    grid-template-rows: 10px;
     grid-auto-rows: 200px;
     overflow: auto;
-    gap: 10px;
+    gap: 15px;
 }
 
 .info-sidebar {
     grid-area: 2 / 3 / -1 / -1;
-    border: 1px solid blue;
     display: grid;
+    gap: 15px;
     grid-template-columns: 1fr;
+    padding: 20px 20px 0 10px;
+    overflow: auto;
 }
 
 /* Components */
@@ -75,7 +78,39 @@ li {
 }
 
 .project {
-    
+    position: relative;
+    background-color: var(--project);
+    box-shadow: 1px 1px 5px 0 rgb(211, 211, 211);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.project-accent {
+    float: left;
+    background-color: var(--accent);
+    width: 7px;
+    height: 100%;
+    z-index: -1;
+}
+
+.project-heading {
+    color: var(--heading);
+    padding: 30px 30px 5px;
+    font-weight: bold;
+}
+
+.project-text {
+    color: var(--text);
+    padding: 0 30px 0;
+    font-size: 0.9rem;
+}
+
+.project-icon-container {
+    position: absolute;
+    display: flex;
+    gap: 20px;
+    bottom: 30px;
+    right: 20px;
 }
 
 .nav-search {
@@ -93,34 +128,52 @@ li {
 .nav-searchbar {
     width: 100%;
     height: 1.5rem;
-    background-color: rgba(0, 0, 100, 0.1);
+    background-color: var(--background);
     border: none;
     border-radius: 35px;
 }
 
 .nav-notif, .nav-links ul {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     gap: 10px;
     height: 100%;
+    margin-right: 70px;
 }
 
-.nav-name {
+.nav-notif {
+    gap: 25px;
+}
+
+.nav-notif-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: yellow;
+}
+
+.nav-notif-name {
+    font-size: 1.1rem;
+    font-weight: bold;
 }
 
 .nav-name-avatar {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: yellow;
     float: left;
-    height: 100%;
     margin: 0 auto;
     padding: 30px;
     margin-left: max(10px, 15%);
+    margin-right: 15px;
 }
 
 .nav-name-greet {
     font-size: 0.7rem;
     color: var(--text);
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .nav-name-name {
@@ -129,14 +182,13 @@ li {
     font-weight: bold;
 }
 
-.nav-links {
-}
-
 .nav-links ul {
-    gap: 30px;
+    gap: 25px;
 }
 
 .nav-links-link {
+    width: 50px;
+    text-align: center;
     background-color: var(--sidebar);
     color: var(--sidebar-font);
     padding: 7px 20px;
@@ -163,9 +215,70 @@ li {
     padding: 5px 10px;
 }
 
-.info-sidebar-unit {
-    border: 1px solid green;
+.info-heading, .project-container-heading {
+    color: var(--heading);
+    font-size: 1.1rem;
+    font-weight: bold;
 }
+
+.info-heading {
+    margin-top: 10px;
+}
+
+.info-announcements-container, .info-trending-container {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--project);
+    border-radius: 8px;
+    height: fit-content;
+    overflow: hidden;
+    padding: 30px 30px;
+    margin-bottom: 0;
+}
+
+.info-trending-container {
+    padding: 10px 30px;
+}
+
+.info-announcements-item {
+    padding: 5px 0;
+}
+
+.info-trending-item {
+    padding: 15px 0;
+}
+
+.info-trending-item-icon {
+    float: left;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: red;
+    margin-right: 15px;
+}
+
+.info-announcements-item-heading {
+    color: var(--heading);
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.info-trending-item-heading {
+    color: var(--heading);
+    font-size: 0.85rem;
+}
+
+.info-announcements-item-text, .info-trending-item-text {
+    color: var(--text);
+    font-size: 0.8rem;
+}
+
+.info-separator {
+    opacity: 30%;
+    margin-top: 20px;
+}
+
 
 /* States */
 
